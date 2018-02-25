@@ -1,0 +1,40 @@
+Account Number:1012565
+Name:Ioannis
+Surname:Andreou
+PIN:37df0d2a0452027ddf1d520b53017cbf
+Account Type:Basic Account
+Balance:600 Euro
+Transactions History:12:00 - 25/09/2013 - 110 Euro - ATM Withdrawal, 11:00 - 26/09/2013 - 65.55 Euro - Alpha Mega, 23:00 - 27/09/2013 - 72 Euro - Domus Restaurant 
+
+Account Number:1078789
+Name:Christos
+Surname:Papakostas
+PIN:96747ab4eab7983af9044a01abc085d
+Account Type:Gold Account
+Balance:1500 Euro
+Transactions History:10:00 - 25/09/2013 - 200 Euro - ATM Withdrawal, 15:00 - 26/09/2013 - 42.30 Euro - Public, 23:00 - 27/09/2013 - 45 Euro - Stoa Dimitri Restaurant
+
+Account Number:1256598
+Name:Andreas
+Surname:Antoniou
+PIN:555bf3a992008292fa92b599e46cb601
+Account Type:Silver Account
+Balance:4125 Euro
+Transactions History:16:00 - 25/09/2013 - 110 Euro - ATM Withdrawal, 19:00 - 26/09/2013 - 412.30 Euro - Stephanis, 11:00 - 27/09/2013 - 245 Euro - EAC Bill Payment
+
+Account Number:1246587
+Name:Costas
+Surname:Christoforou
+PIN:7d44a927145b063761613f1b0a87f5d5
+Account Type:Basic Account
+Balance:700 Euro
+Transactions History:12:00 - 25/09/2013 - 300 Euro - ATM Withdrawal, 21:00 - 26/09/2013 - 45 Euro - Debenhams, 10:00 - 27/09/2013 - 312 Euro - EAC Bill Payment
+
+Account Number:1145645
+Name:Andri
+Surname:Meletiou
+PIN:aa6ab3c19d0a3840acfa245e69216d64
+Account Type:Silver Account
+Balance:14125 Euro
+Transactions History:11:00 - 25/09/2013 - 220 Euro - Londa Hotel, 19:00 - 26/09/2013 - 110 Euro - ATM Withdrawal, 23:00 - 27/09/2013 - 110 Euro - ATM Withdrawal
+
