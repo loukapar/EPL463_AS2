@@ -25,6 +25,11 @@
  */
 package atm;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.icepdf.ri.common.ComponentKeyBinding;
@@ -36,9 +41,9 @@ import org.icepdf.ri.common.SwingViewBuilder;
  * @author EPL463
  */
 public class IcePDFViewer {
-	
+
 	private static SwingController controller;
-	
+
 	public static SwingController getController() {
 		return controller;
 	}
@@ -61,10 +66,31 @@ public class IcePDFViewer {
 		// add interactive mouse link annotation support via callback
 		controller.getDocumentViewController().setAnnotationCallback(
 				new org.icepdf.ri.common.MyAnnotationCallback(controller.getDocumentViewController()));
-		
-		
 
 		return viewerComponentPanel;
+	}
+
+	public static void createWindowViewer(String filePath) {
+		if (Desktop.isDesktopSupported()) {
+			try {
+				//open pdf file
+				Desktop.getDesktop().open(new File(filePath));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	public static void createIcePDFViewer(String filePath) {
+		JPanel viewerComponentPanel = createViewer(filePath);
+		// create a new jframe for pdf
+		JFrame window = new JFrame("Statement");
+		window.getContentPane().add(viewerComponentPanel);
+		window.pack();
+		window.setVisible(true);
+		// Open a PDF document to view
+		controller.openDocument(filePath);
 	}
 
 }

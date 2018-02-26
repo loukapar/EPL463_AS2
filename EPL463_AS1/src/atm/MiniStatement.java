@@ -25,10 +25,10 @@ package atm;
  * @author vas
  *
  */
-public class MiniStatement implements StatementType {
+public class MiniStatement extends StatementType {
 
 	/**
-	 * Same as atm.StatementType.java
+	 * Determines the informations that will be printed in statement for mini statements
 	 */
 	@Override
 	public String print() {

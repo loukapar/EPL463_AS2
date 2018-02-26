@@ -26,10 +26,10 @@ package atm;
  * @author vas
  *
  */
-public class BalanceOnly implements StatementType {
+public class BalanceOnly extends StatementType {
 
 	/**
-	 * same as atm.StatementType.java
+	 * Determines the informations that will be printed in statement for balance only statements
 	 */
 	@Override
 	public String print() {

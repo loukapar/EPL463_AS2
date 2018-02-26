@@ -62,7 +62,7 @@ public class Client implements ActionListener {
 	private JRadioButton mini;
 	private JRadioButton balance;
 	private StatementFactory factory;
-	
+
 	public Client() {
 
 		// build a containing JFrame for display
@@ -71,12 +71,12 @@ public class Client implements ActionListener {
 		main.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		main.setSize(450, 250);
 
-		//build a JPanel for display in above JFrame
+		// build a JPanel for display in above JFrame
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 
-		//JLabels for ATM's GUI
+		// JLabels for ATM's GUI
 		JLabel lblNewLabel = new JLabel("ATM Machine");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(170, 11, 127, 14);
@@ -92,26 +92,26 @@ public class Client implements ActionListener {
 		lblEnterSecretPin.setBounds(10, 99, 127, 14);
 		contentPane.add(lblEnterSecretPin);
 
-		//JTextField for user's input
+		// JTextField for user's input
 		txtAcc = new JTextField();
 		txtAcc.setBounds(193, 59, 231, 20);
 		contentPane.add(txtAcc);
 		txtAcc.setColumns(10);
 
-		//JPasswordField for password input
+		// JPasswordField for password input
 		txtPin = new JPasswordField();
 		txtPin.setColumns(10);
 		txtPin.setBounds(193, 98, 231, 20);
 		contentPane.add(txtPin);
 
-		//JButton
+		// JButton
 		btnGet = new JButton("Get Statement");
 		btnGet.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnGet.setBounds(10, 130, 173, 32);
 		contentPane.add(btnGet);
 
-		//Radio buttons for statement type
-		//add each radio button in group so only 1 be selected each time
+		// Radio buttons for statement type
+		// add each radio button in group so only 1 be selected each time
 		balance = new JRadioButton("Balance Only");
 		buttonGroup.add(balance);
 		balance.setBounds(10, 175, 109, 23);
@@ -127,7 +127,8 @@ public class Client implements ActionListener {
 		detailed.setBounds(259, 175, 153, 23);
 		contentPane.add(detailed);
 
-		//add jpanel on jframe, set frame visible, add action listener on button
+		// add jpanel on jframe, set frame visible, add action listener on
+		// button
 		btnGet.addActionListener(this);
 		main.add(contentPane);
 		main.setVisible(true);
@@ -151,49 +152,63 @@ public class Client implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		boolean selectionOK = true;
 		String STMtype = null;
-		//check which radio button is selected (statement type)
-		if (balance.isSelected()){
+		// check which radio button is selected (statement type)
+		if (balance.isSelected()) {
 			STMtype = balance.getText();
-		} else if (detailed.isSelected()){
+		} else if (detailed.isSelected()) {
 			STMtype = detailed.getText();
-		} else if (mini.isSelected()){
+		} else if (mini.isSelected()) {
 			STMtype = mini.getText();
 		} else {
-			selectionOK = false; // if no one of the above is selected then selection false
+			selectionOK = false; // if no one of the above is selected then
+									// selection false
 		}
-		//read user input
+		// read user input
 		String account = txtAcc.getText();
 		String accPIN = txtPin.getText();
-		//check if user input is not empty and user has select a statement type
+		// check if user input is not empty and user has select a statement type
 		if (!account.isEmpty() && !accPIN.isEmpty() && selectionOK) {
 			try {
 				String[] data = new String[7];
-				//read data for user account
-				Accounts.readData(account,data);
-				//get current customer object
+				// read data for user account
+				Accounts.readData(account, data);
+				// get current customer object
 				Accounts customer = Accounts.getObj();
-				//create customer object if not exist or update it fields
+				// create customer object if not exist or update it fields
 				customer = Accounts.getInstance(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
-				//check if account number and pin are correct
-				if (SA.checkPIN(account, accPIN)){
-					//create a single instance of type factory
+				// check if account number and pin are correct
+				if (SA.checkPIN(account, accPIN)) {
+					// create a single instance of type factory
 					factory = StatementFactory.getUniqueInstance();
-					//Use factory pattern, use object factory and function createStatement which determines
-					//with the use of STMtype (type of statement - user input) what statement should be created
+					// Use factory pattern, use object factory and function
+					// createStatement which determines
+					// with the use of STMtype (type of statement - user input)
+					// what statement should be created
 					StatementType STselected = factory.createStatement(STMtype);
-					//create an object type iTextPDFWriter where it creates the PDF file based on user input
+					// create an object type iTextPDFWriter where it creates the
+					// PDF file based on user input
 					new iTextPDFWriter(STselected.print());
-					//create a new JPanel for the PDF
-					JPanel viewerComponentPanel = IcePDFViewer.createViewer("Statement.pdf");
-					
-					//create a new jframe for pdf
-					JFrame window = new JFrame("Statement");
-					window.getContentPane().add(viewerComponentPanel);
-					window.pack();
-					window.setVisible(true);
-					// Open a PDF document to view
-					(IcePDFViewer.getController()).openDocument("Statement.pdf");
-					
+					// create a new JPanel for the PDF
+
+					//user input about pdf type
+					String[] methods = { "Window", "IcePDF" };
+					String choice = (String) JOptionPane.showInputDialog(main, "Choose pdf type..", "PDF TYPE",
+							JOptionPane.QUESTION_MESSAGE, null, methods, methods[0]);
+					switch (choice) {
+					case "Window":
+						//if user choose to display statement in window pdf
+						IcePDFViewer.createWindowViewer("Statement.pdf");
+						break;
+					case "IcePDF":
+						//if user choose to display pdf in icepdf 
+						IcePDFViewer.createIcePDFViewer("Statement.pdf");
+						break;
+					}
+
+					txtAcc.setText("");
+					txtPin.setText("");
+					buttonGroup.clearSelection();
+
 				} else {
 					JOptionPane.showMessageDialog(main, "Wrong combination of Account Number and Secret PIN!");
 				}

@@ -27,11 +27,11 @@ package atm;
  * @author vas
  *
  */
-public class DetailedStatement implements StatementType {
+public class DetailedStatement extends StatementType {
 
 	@Override
 	/**
-	 * Same as atm.StatementType.java
+	 * Determines the informations that will be printed in statement for detailed statements
 	 */
 	public String print() {
 		return "Account Number: " + Accounts.getObj().getAccNum() + "\nName: " + Accounts.getObj().getName()

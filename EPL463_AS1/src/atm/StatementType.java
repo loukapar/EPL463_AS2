@@ -26,14 +26,16 @@ package atm;
  * @author vas
  *
  */
-public interface StatementType {
+public abstract class StatementType {
 	/**
-	 * This function determines and returns the data that will be printed in the pdf file
-	 * This interface is implemented from classes:
-	 * 	BalanceOnly where it prints only balance
-	 *  MiniStatement where it prints some of the account's data
-	 *  DetailedStatement where it prints all account's data
+	 * This function determines and returns the data that will be printed in the
+	 * pdf file This abstract class is extended from classes: BalanceOnly where it
+	 * prints only balance MiniStatement where it prints some of the account's
+	 * data DetailedStatement where it prints all account's data
+	 * 
 	 * @return
 	 */
-	public String print();
+	public String print() {
+		return null;
+	}
 }
