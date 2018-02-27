@@ -44,11 +44,7 @@ public class IcePDFViewer {
 
 	private static SwingController controller;
 
-	public static SwingController getController() {
-		return controller;
-	}
-
-	public static JPanel createViewer(String filePath) {
+	public JPanel createViewer(String filePath) {
 
 		// build a controller
 		controller = new SwingController();
@@ -70,19 +66,18 @@ public class IcePDFViewer {
 		return viewerComponentPanel;
 	}
 
-	public static void createWindowViewer(String filePath) {
+	public void createWindowViewer(String filePath) {
 		if (Desktop.isDesktopSupported()) {
 			try {
-				//open pdf file
+				// open pdf file
 				Desktop.getDesktop().open(new File(filePath));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
 	}
 
-	public static void createIcePDFViewer(String filePath) {
+	public void createIcePDFViewer(String filePath) {
 		JPanel viewerComponentPanel = createViewer(filePath);
 		// create a new jframe for pdf
 		JFrame window = new JFrame("Statement");

@@ -191,17 +191,18 @@ public class Client implements ActionListener {
 					// create a new JPanel for the PDF
 
 					//user input about pdf type
+					IcePDFViewer Viewerobj = new IcePDFViewer();
 					String[] methods = { "Window", "IcePDF" };
 					String choice = (String) JOptionPane.showInputDialog(main, "Choose pdf type..", "PDF TYPE",
 							JOptionPane.QUESTION_MESSAGE, null, methods, methods[0]);
 					switch (choice) {
 					case "Window":
 						//if user choose to display statement in window pdf
-						IcePDFViewer.createWindowViewer("Statement.pdf");
+						Viewerobj.createWindowViewer("Statement.pdf");
 						break;
 					case "IcePDF":
 						//if user choose to display pdf in icepdf 
-						IcePDFViewer.createIcePDFViewer("Statement.pdf");
+						Viewerobj.createIcePDFViewer("Statement.pdf");
 						break;
 					}
 
