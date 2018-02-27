@@ -76,7 +76,7 @@ public class IcePDFViewer {
 			}
 		}
 	}
-
+ 
 	public void createIcePDFViewer(String filePath) {
 		JPanel viewerComponentPanel = createViewer(filePath);
 		// create a new jframe for pdf
